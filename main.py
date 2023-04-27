@@ -10,7 +10,7 @@ def run_app():
     and Google Search. It uses Streamlit to create a simple web page for user interaction.
     """
     # Set the title of the web page
-    st.title("Analyzing Google Search")
+    st.title("Interactive Chatbot & Google Search Analyzer")
 
     # Create a text input box for users to enter their query
     user_input = st.text_input("Enter your query:")
@@ -21,21 +21,36 @@ def run_app():
         google_res_urls = search.google_search(user_input)
 
         chat_prompt = f"""
-        Question is {user_input}
-        Assume you're the expert in this area, with 10+ years of experience.
-        The websites below provides latest information from google search. Please incorporate those as needed to improve your response. 
-        Your response should include 3 sections. 
-        First section: Title
-        Second section: Summary. You need to provide a summary of your finding upfront, and provide actionable recommendation as needed 
-        Third section: 3 bullet points for key insights. 
-        No more summary at the end
-        Please make the response interesting, concise and self explanatory
-        Markdown format with #Headings, ##H3, + bullet points
-        websites: {google_res_urls}"""
+                        Question: {user_input}
+                        Assume you're an expert in this area, with 10+ years of experience.
+                        The websites below provide the latest information from Google Search. Please prioritize newer information and incorporate these as needed to improve your response.
+
+                        Your response should include 5 sections:
+                        1. ### Title
+                        Provide a concise and interesting title that captures the essence of the response.
+                        2. #### Summary
+                        Give a brief summary of your findings. Always include an actionable recommendation, unless it's inappropriate.
+                        3. #### Key Findings
+                        - Highlight three key findings from your research, focusing on the most recent and relevant information.
+                        4. #### Unique Insights
+                        - Share something particularly unique and interesting compared to common understanding on the topic, based on the latest information.
+                        5. #### Resources
+                        - Include the websites from the Google Search results as resources to support your response, prioritizing up-to-date sources.
+
+                        Please make the response engaging, concise, and self-explanatory.
+                        Use Markdown format with ###Headings, ####H4, and - bullet points.
+
+                        Websites: {google_res_urls}
+                        """
+
+
+
+
+
         result = chat.chat_response(chat_prompt)
 
         # Display the result on the web page
-        st.write(f"Result: {result}")
+        st.write(result)
 
 # Run the Streamlit app
 if __name__ == "__main__":
