@@ -27,7 +27,7 @@ def search_google(query):
             response_data = response.json()
             urls = [x['url'] for x in response_data['results']]
             return urls
-        except ValueError:
+        except (ValueError, KeyError):
             print(f"Error: Unable to parse JSON data. Status code: {response.status_code}")
             print("Content:", response.text)
             return []
