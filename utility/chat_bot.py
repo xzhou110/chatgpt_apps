@@ -18,7 +18,7 @@ def run_interactive_chatbot():
     # Create a button to trigger the analysis
     if st.button("Analyze"):
         # Call your google_search function with the user input
-        google_res_urls = search.google_search(user_input)
+        google_res_urls = search.search_google(user_input)
 
         chat_prompt = f"""
                         Question: {user_input}
@@ -43,7 +43,7 @@ def run_interactive_chatbot():
                         Websites: {google_res_urls}
                         """
 
-        result = chat.chat_response(chat_prompt)
+        result = chat.get_chat_response(chat_prompt)
 
         # Display the result on the web page
         st.write(result)

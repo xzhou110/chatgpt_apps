@@ -4,7 +4,7 @@ import os
 url = "https://google-search74.p.rapidapi.com/"
 google_search_api = os.environ.get("google_search_api")
 
-def google_search(query):
+def search_google(query):
     """
     Perform a Google search and return the top 10 relevant websites.
     
