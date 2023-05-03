@@ -1,4 +1,5 @@
-from utility import chat_prompt, chat_response, topic_search
+from utils.search_utils import search_google
+from utils.chat_utils import generate_chat_prompt, get_chat_response
 import streamlit as st
 
 def run_interactive_chatbot():
@@ -18,9 +19,11 @@ def run_interactive_chatbot():
     if st.button("Analyze"):
         input_type = 'question'
         # Call your google_search function with the user input
-        google_res_urls = topic_search.search_google(user_input)
-        prompt = chat_prompt.generate_chat_prompt(input_type, user_input, google_res_urls)
-        result = chat_response.get_chat_response(prompt)
+        google_res_urls = search_google(user_input)
+        prompt = generate_chat_prompt(input_type, user_input, google_res_urls)
+        result = get_chat_response(prompt)
 
         # Display the result on the web page
         st.write(result)
+
+run_interactive_chatbot()

@@ -1,3 +1,8 @@
+import openai
+import os
+
+openai.api_key = os.environ.get("openai_api")
+
 def generate_chat_prompt(input_type, user_input, article_urls):
     """
     Generate a chat prompt for ChatGPT based on input_type, user_input, and article_urls.
@@ -31,7 +36,15 @@ def generate_chat_prompt(input_type, user_input, article_urls):
                         """
     return chat_prompt
 
-
-
-
-
+def get_chat_response(user_prompt):
+    """
+    Return a ChatGPT response based on a user prompt.
+    
+    :param user_prompt: A string representing the user's input prompt.
+    :return: A string representing the ChatGPT-generated response.
+    """
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": user_prompt}]
+    )
+    return completion.choices[0].message.content
