@@ -44,7 +44,7 @@ def get_chat_response(user_prompt):
     :return: A string representing the ChatGPT-generated response.
     """
     completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[{"role": "user", "content": user_prompt}]
     )
     return completion.choices[0].message.content
